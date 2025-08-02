@@ -6,7 +6,7 @@
 /*   By: sfiorini <sfiorini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:37:10 by sfiorini          #+#    #+#             */
-/*   Updated: 2025/08/01 18:08:07 by sfiorini         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:32:55 by sfiorini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,29 @@ void	ScalarConverter::print_all_conversion() const
 	else
 	{
 		std::string	integer_str;
-		for (int i = 0; i < (int)(this->getValue().length()); i++)
+		if (this->getValue()[0] == '.' && this->getValue().length() == 1)
 		{
-			if (this->getValue()[i] == '.')
-				break ;
-			integer_str.push_back(this->getValue()[i]);
+			integer_str = this->getValue();
+		}
+		else if (this->getValue()[0] == '.' && this->getValue().length() >= 1)
+		{
+			int i;
+			for (i = 1; i < static_cast<int>(this->getValue().length()); i++)
+			{
+				if (this->getValue()[i] >= '0' && this->getValue()[i]  <= '9')
+					 break ;
+			}
+			if (static_cast<int>(this->getValue().length()) == i)
+				integer_str = this->getValue();
+		}
+		else
+		{
+			for (int i = 0; i < (int)(this->getValue().length()); i++)
+			{
+				if (this->getValue()[i] == '.')
+					break ;
+				integer_str.push_back(this->getValue()[i]);
+			}
 		}
 		std::cout << "char: ";
 		if (integer_str.length() > 1 && is_numeric(integer_str) == false)
@@ -148,9 +166,12 @@ void	ScalarConverter::print_all_conversion() const
 		{
 			if (is_there_a_point(this->getValue()) == true)
 			{
+			
 				std::cout << std::fixed << std::setprecision(1) 
-				<< this->getValue().c_str() << "f"
-				<< std::endl;
+				<< this->getValue();
+				if (this->getValue()[this->getValue().length() - 1] != 'f')
+					std::cout << "f";
+				std::cout << std::endl;
 			}
 			else
 			{
@@ -166,7 +187,7 @@ void	ScalarConverter::print_all_conversion() const
 			else
 			{
 				std::cout << std::fixed << std::setprecision(1) 
-				<< static_cast<float>(this->getValue()[0]) << std::endl;
+				<< static_cast<float>(this->getValue()[0]) << "f" << std::endl;
 			}
 		}
 		
@@ -177,9 +198,15 @@ void	ScalarConverter::print_all_conversion() const
 		{
 			if (is_there_a_point(this->getValue()) == true)
 			{
-				std::cout << std::fixed << std::setprecision(1) 
-				<< this->getValue().c_str()
-				<< std::endl;
+				std::cout << std::fixed << std::setprecision(1);
+				if (this->getValue()[this->getValue().length() - 1] == 'f')
+				{
+					for (int i = 0; i < static_cast<int>(this->getValue().length()) - 1; i++)
+						std::cout << this->getValue()[i];
+				}
+				else
+					std::cout << this->getValue() << std::endl;
+				std::cout << std::endl;
 			}
 			else
 			{
