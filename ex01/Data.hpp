@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfiorini <sfiorini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/02 12:24:51 by sfiorini          #+#    #+#             */
-/*   Updated: 2025/08/02 12:36:36 by sfiorini         ###   ########.fr       */
+/*   Created: 2025/08/02 17:21:34 by sfiorini          #+#    #+#             */
+/*   Updated: 2025/08/02 17:25:21 by sfiorini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@
 
 class Data
 {
-private:
-	const std::string name;
-public:
-	Data(const std::string &name):name(name){};
-	~Data(){};
+	private:
+		const std::string name;
+	public:
+		Data(const std::string &name):name(name){};
+		~Data(){};
 };
-
 
 #endif

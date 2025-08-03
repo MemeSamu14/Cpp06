@@ -5,23 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfiorini <sfiorini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/02 11:49:50 by sfiorini          #+#    #+#             */
-/*   Updated: 2025/08/02 17:20:08 by sfiorini         ###   ########.fr       */
+/*   Created: 2025/08/02 17:24:43 by sfiorini          #+#    #+#             */
+/*   Updated: 2025/08/03 11:14:44 by sfiorini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Data.hpp"
 #include "Serializer.hpp"
-#include "uintptr_t.hpp"
 
-int	main( void )
+
+int	main(void)
 {
-	Data *p = new Data("siuuu");
-	// uintptr_t	ptr(p);
+	Data*	ptr = new Data("Messi");
 
-	// ptr = Serializer::serialize(p);
-	// Data		*ptr2 = Serializer::deserialize(ptr);
+	uintptr_t	raw = Serializer::serialize(ptr);
+	Data		*ptr2 = Serializer::deserialize(raw);
 
-	std::cout << "Data p       : " << &p << std::endl;
-	// std::cout << "uintptr_t ptr: " << &ptr << std::endl;
-	// std::cout << "Data ptr     : " << &ptr2 << std::endl;
+	
+	std::cout << "ptr: " << ptr << std::endl;
+	std::cout << "raw: " << raw << std::endl;
+	std::cout << "ptr2: " << ptr2 << std::endl;
+
+	delete ptr;
+
+	return (0);
 }

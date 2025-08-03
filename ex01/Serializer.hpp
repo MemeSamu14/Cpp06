@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfiorini <sfiorini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/02 12:08:51 by sfiorini          #+#    #+#             */
-/*   Updated: 2025/08/02 17:17:34 by sfiorini         ###   ########.fr       */
+/*   Created: 2025/08/02 17:26:46 by sfiorini          #+#    #+#             */
+/*   Updated: 2025/08/03 11:11:25 by sfiorini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,18 @@
 # define SERIALIZER_HPP
 
 #include "Data.hpp"
-#include "uintptr_t.hpp"
-#include <cstdint>
 
-// class Data;
+typedef unsigned long uintptr_t;
 
 class Serializer
 {
-private:
-	const std::string name;
-public:
-	Serializer(const std::string &name):name(name){};
-	~Serializer(){};
-	static uintptr_t serialize(Data* ptr){return (reinterpret_cast<uintptr_t *>(ptr));};
-	// static Data* deserialize(uintptr_t raw)
-	// {
-	// 	uintptr_t *a = &raw;
-	// 	return (reinterpret_cast<Data *>(a));
-	// };
-};
+	private:
 
+	public:
+		Serializer(){};
+		~Serializer(){};
+		static uintptr_t	serialize(Data* ptr){return (reinterpret_cast<uintptr_t>(ptr));};
+		static Data*		deserialize(uintptr_t raw){return (reinterpret_cast<Data *>(raw));};
+};
 
 #endif
