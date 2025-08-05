@@ -6,12 +6,11 @@
 /*   By: sfiorini <sfiorini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:37:10 by sfiorini          #+#    #+#             */
-/*   Updated: 2025/08/02 11:32:55 by sfiorini         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:53:00 by sfiorini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
 
 //static_ cat reiteprestes dynimic
 
@@ -147,7 +146,11 @@ void	ScalarConverter::print_all_conversion() const
 			std::cout << "impossible" << std::endl;
 		else if (is_numeric(integer_str) == true)
 		{
-			std::cout << static_cast<int>(atoi(integer_str.c_str())) << std::endl;
+			if (static_cast<int>(atof(integer_str.c_str())) == -2147483648)
+				std::cout << "Overflow" << std::endl;
+			else
+				std::cout << static_cast<int>(atof(integer_str.c_str())) << std::endl;
+			
 		}
 		else
 		{
@@ -176,7 +179,7 @@ void	ScalarConverter::print_all_conversion() const
 			else
 			{
 				std::cout << std::fixed << std::setprecision(1) 
-				<< static_cast<float>(atoi(this->getValue().c_str())) << "f"
+				<< static_cast<float>(atof(this->getValue().c_str())) << "f"
 				<< std::endl;
 			}
 		}
@@ -206,12 +209,11 @@ void	ScalarConverter::print_all_conversion() const
 				}
 				else
 					std::cout << this->getValue() << std::endl;
-				std::cout << std::endl;
 			}
 			else
 			{
 				std::cout << std::fixed << std::setprecision(1) 
-				<< static_cast<double>(atoi(this->getValue().c_str()))
+				<< static_cast<double>(atof(this->getValue().c_str()))
 				<< std::endl;
 			}
 		}
