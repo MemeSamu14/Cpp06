@@ -1,4 +1,4 @@
-NAME = converter
+NAME = types
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -g -std=c++98
